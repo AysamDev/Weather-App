@@ -2,14 +2,14 @@ class Renderer
 {
     constructor()
     {
-        this.template = $('#team-template').html()
+        this.template = $('#city-template').html()
         this.templateScript = Handlebars.compile(this.template)
     }
 
-    renderPlayers(data)
+    renderPlayers(cityData)
     {
-        $('.team-container').empty()
-        const html =  this.templateScript({data})
-        $('.team-container').append(html)
+        $('.city-container').empty()
+        const html =  this.templateScript({cityData})
+        $('.city-container').append(html)
     }
 }
