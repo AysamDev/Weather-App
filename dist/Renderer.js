@@ -6,10 +6,11 @@ class Renderer
         this.templateScript = Handlebars.compile(this.template)
     }
 
-    renderPlayers(cityData)
+    renderCities(cityData)
     {
         $('.city-container').empty()
         const html =  this.templateScript({cityData})
+        console.log(html)
         $('.city-container').append(html)
     }
 }

@@ -8,27 +8,27 @@
 </head>
 
 <body>
-
     <script  id="city-template" type="text/x-handlebars-template">
-        {{#each data}}
+        {{#each cityData}}
         <div class="city-info">
+            <span class="remove-button">X</span>
             <div class="name">{{name}}</div>
             <div class="Temp">{{temperature}}</div>
             <div class="condition">{{condition}}</div>
-            <img class="condition-image" src={{conditionPic}} onerror= "this.src = `https://www.pngkey.com/png/detail/968-9682817_nba-logo.png`;this.className=`errorimage`">    
+            <link rel="icon" class="condition-image" href={{conditionPic}}>
+            <span class="save-button">Save</span>    
         </div>
         {{/each}}
     </script>
 
-    <div id="new-roster">
-        <input type="text" id="team-input" placeholder="Enter team name">
-        <button onclick=fetchRoster()>Get Roster</button>
+    <div id="new-city">
+        <input type="text" id="city-input" placeholder="Enter the city you desire to weather">
+        <button onclick=handleSearch()>Weather Me</button>
     </div>
 
-    <div id="container">
-        <div class="team-container">
+        <div class="city-container">
         </div>
-    </div>
+    
 <script src="./jquery/dist/jquery.js"></script>
 <script src="./handlebars/dist/handlebars.js"></script>
 <script src="renderer.js"></script>

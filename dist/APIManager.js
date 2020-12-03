@@ -5,16 +5,23 @@ class APIManager {
     constructor(renderer)
      {
          this.cityData = []
-        this.renderer = renderer
+         this.renderer = renderer
     }
     getDataFromDB()
     {
             $.ajax({
                 type:"GET",
                 url: `/cities`,
-                success: (ref) =>
+                success: async (ref) =>
                 {
-                this.cityData = ref
+                this.cityData = await ref.map(city => ({
+                    name: city.name,
+                    temperature: city.temperature,
+                    condition: city.condition,
+                    conditionPic: city.conditionPic
+                }))
+                console.log(this.cityData)
+                this.renderer.renderCities(this.cityData)
                 }
             });
     }
@@ -29,33 +36,33 @@ class APIManager {
                     const newCity = {
                         name: data.name,
                         temperature: data.main.temp,
-                        condition: data.weather.main,
-                        conditionPic: data.weather.icon
+                        condition: data.weather[0].main,
+                        conditionPic: data.weather[0].icon
                     }
                     this.cityData.push(newCity)
+                    this.renderer.renderCities(this.cityData)
                 }
             
         });
     }
 
-    saveCity(cityName)
+    async saveCity(cityName)
     {
+        const city = await this.cityData.find(w => w.name === cityName)
+        console.log(city)
         $.ajax({
             type:"POST",
-            data: this.cityData.find((c) =>
-                {
-                 c.name === cityName
-                }),
+            contentType: "application/json",
             dataType: "json",
-            url: `/city/${cityName}`,
+            url: `/city`,
+            data: JSON.stringify(city),
             success: (result) =>
              {  
                 console.log(result)
              }
-            
-        });
+             
+            })
     }
-
     removeCity(cityName)
     {
         $.ajax({
@@ -63,7 +70,13 @@ class APIManager {
             url: `/city/${cityName}`,
             success:  (result) => {
                 console.log(result)
-                }
+                const index = this.cityData.findIndex(w => w.name === cityName)
+                console.log(index)
+                this.cityData.splice(index,1)
+                this.renderer.renderCities(this.cityData)
+                },
+            error: (mess) => (console.log(mess))
         });
+            
     }
 }

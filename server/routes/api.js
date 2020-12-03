@@ -32,8 +32,8 @@ router.get("/cities",async(req,res)=>
 router.post("/city",async(req,res)=>
 {
    let city =  new City(req.body)
-   const save = await city.save()
-   console.log(save)
+   console.log(city)
+   const save = await city.save()   
    res.send("new city was added successfully") 
 })
 
@@ -45,7 +45,7 @@ router.delete("/city/:cityName",async(req,res)=>
       name: city
    })
    res.send(`the city was deleted successfully:
-    ${save}`) 
+    ${save}`)
 })
 
 module.exports = router

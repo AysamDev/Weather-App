@@ -3,17 +3,18 @@ body{
     font-size: large;
 }
 
-#new-roster{
+#new-city{
     display: grid;
     margin-bottom: 1vmax;
     height: 2vmax;
     grid-template-columns: 5fr 2fr;
 
 }
-#team_input{
+#city_input{
 font-size: 150%;
 text-size-adjust: 30px;
 }
+
 button{
     justify-self: center;
     padding-left: 5%;
@@ -26,13 +27,13 @@ button{
 
 }
 
-.team-container{
+.city-container{
     display: grid;
     grid-gap: 1vmax;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 }
 
-.player-info{
+.city-info{
     display: grid;
     background-color: #1D428A;;
     grid-template-columns: none;
@@ -45,17 +46,17 @@ button{
 .name{
     justify-self:center;
 }
-.jersey
+.temp
 {
     justify-self:center;
     margin-bottom: 2px;
 }
-.pos{
+.condition{
     justify-self: center;
     align-content:center;
     margin-top: 10px;
 }
-.image
+.condition-image
 {
     justify-self:center;
     outline: 3px solid white;
@@ -70,4 +71,8 @@ button{
     outline: 3px solid black;
     opacity: 0.9;
     border-radius: 2px;
+}
+.save-button
+{
+    cursor: pointer;
 }
