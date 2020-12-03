@@ -2,38 +2,68 @@
 
 class APIManager {
 
-    constructor() {
-        this.renderer = new Renderer()
+    constructor(renderer)
+     {
+         this.cityData = []
+        this.renderer = renderer
+    }
+    getDataFromDB()
+    {
+            $.ajax({
+                type:"GET",
+                url: `/cities`,
+                success: (ref) =>
+                {
+                this.cityData = ref
+                }
+            });
     }
 
- getPlayers()
-{
-    let input = $('#team-input').val()
-         input = input.toLowerCase()
-    if(input != "")
+    getCityData(cityName)
     {
         $.ajax({
             type:"GET",
-            url: `/team/${input}`,
-            success: (ref) => {
-                if (ref.length > 0)
-                {
-                    for(let player of ref)
-                    {
-                        //requesting image
-                        player.image = `https://nba-players.herokuapp.com/players/${player.lastName}/${player.firstName}`
+            url: `/city/${cityName}`,
+            success: async (ref) => {
+                    const data = await ref
+                    const newCity = {
+                        name: data.name,
+                        temperature: data.main.temp,
+                        condition: data.weather.main,
+                        conditionPic: data.weather.icon
                     }
-                    this.renderer.renderPlayers(ref)
-                }
+                    this.cityData.push(newCity)
                 }
             
-          });
+        });
     }
-    else
+
+    saveCity(cityName)
     {
-        alert("Insert team name")
+        $.ajax({
+            type:"POST",
+            data: this.cityData.find((c) =>
+                {
+                 c.name === cityName
+                }),
+            dataType: "json",
+            url: `/city/${cityName}`,
+            success: (result) =>
+             {  
+                console.log(result)
+             }
+            
+        });
     }
 
-}
-
+    removeCity(cityName)
+    {
+        $.ajax({
+            type:"DELETE",
+            url: `/city/${cityName}`,
+            success:  (result) => {
+                console.log(result)
+                }
+        });
+    }
 }

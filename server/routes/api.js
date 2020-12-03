@@ -11,9 +11,9 @@ router.use(express.static(path.join(__dirname, 'dist')))
 router.use(express.static(path.join(__dirname, 'node_modules')))
 const City = require('../models/City')
 
-router.get("/city/:city",async(req,res)=>
+router.get("/city/:cityName",async(req,res)=>
 {
-    const cityName = req.params.city
+    const cityName = req.params.cityName
     const apiKey = "fd53646163dc207e48732d2ffd54f647"
     const cityRequest = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
    const response = await axios.get(cityRequest)
@@ -31,11 +31,21 @@ router.get("/cities",async(req,res)=>
 
 router.post("/city",async(req,res)=>
 {
-   const city =  req.body
-   
-   const response = await City.find()
-   console.log(response)
-   res.send(response) 
+   let city =  new City(req.body)
+   const save = await city.save()
+   console.log(save)
+   res.send("new city was added successfully") 
+})
+
+router.delete("/city/:cityName",async(req,res)=>
+{
+   let city =  req.params.cityName
+   console.log(city)
+   const save = await City.findOneAndDelete({
+      name: city
+   })
+   res.send(`the city was deleted successfully:
+    ${save}`) 
 })
 
 module.exports = router
