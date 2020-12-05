@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/Weather', { useNewUrlParser: true })
+mongoose.connect(process.env.URL ||'mongodb://localhost/Weather', { useNewUrlParser: true })
 
 const Schema = mongoose.Schema
 

@@ -14,6 +14,6 @@ app.use(express.static(path.join(__dirname, 'node_modules')))
 app.use('/',api)
 
 
-app.listen(port, function () {
+app.listen(process.env.PORT || port, function () {
     console.log(`Server running on ${port}`)
 })
