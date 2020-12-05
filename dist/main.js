@@ -15,14 +15,14 @@ const handleSearch = async function()
 
 $('.city-container').on('click','.save-button',function()
 {
-    const name = $(this).siblings('.name').text()
+    const name = $(this).siblings('.city-degree-name').children(".name").text()
     api.saveCity(name)
 })
 
 
 $('.city-container').on('click','.remove-button',function()
 {
-    const name = $(this).siblings('.name').text()
+    const name = $(this).siblings('.city-degree-name').children(".name").text()
     console.log(name)
     api.removeCity(name)
 })

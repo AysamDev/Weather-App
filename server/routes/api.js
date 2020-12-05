@@ -15,7 +15,7 @@ router.get("/city/:cityName",async(req,res)=>
 {
     const cityName = req.params.cityName
     const apiKey = "fd53646163dc207e48732d2ffd54f647"
-    const cityRequest = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
+    const cityRequest = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
    const response = await axios.get(cityRequest)
    console.log(response.data)
    res.send(response.data) 

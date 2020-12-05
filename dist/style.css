@@ -2,77 +2,104 @@ body{
     font-family: 'PT Sans', sans-serif;
     font-size: large;
 }
+.grid
+{
+    display: grid;
+    grid-template-areas: 
+    "h h h h"
+    "c c c c"
+    "c c c c"
+    "c c c c";
+}
 
 #new-city{
+    grid-area: h;
     display: grid;
-    margin-bottom: 1vmax;
+    align-self: center;
+    margin-left: 1em;
+    margin-right: 1em;
     height: 2vmax;
-    grid-template-columns: 5fr 2fr;
+    margin-top: 1em;
+    grid-gap: 0.5em;
+    align-items: center;
+    grid-template-columns:  1fr;
+    grid-template-rows: 1fr;
 
 }
 #city_input{
-font-size: 150%;
-text-size-adjust: 30px;
+   
+    display: grid;
+    font-size: 100%;
+    text-size-adjust: 10px;
+
 }
 
 button{
-    justify-self: center;
-    padding-left: 5%;
-    padding-right: 5%;
-    margin-right: 50%;
+    display: grid;
+   align-self: center;
     border: cornsilk transparent  solid 3px;
     border-radius: 30px;
     opacity: 0.8;
     font-size: large;
-
 }
 
 .city-container{
     display: grid;
-    grid-gap: 1vmax;
+    grid-area: c;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 5em;
+    grid-gap: 1em;
     grid-template-columns: repeat(3, 1fr);
 }
 
 .city-info{
     display: grid;
-    background-color: #1D428A;;
-    grid-template-columns: none;
-    border-radius: 15px;
-    padding: 1vmax;
-    margin-left: 1vmax;
-    border-color: #98002E;
-    box-shadow: 5px 5px 5px #98002E;
+    align-items: center;
+    height: 15em;
+    color: white;
+    justify-items: center;
+    border-radius: 1em;
+    border: transparent  ;
+    background-image: url('https://img-9gag-fun.9cache.com/photo/awQWwLD_700bwp.webp'); 
+}
+.city-degree-name
+{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    margin-top: -3em;
 }
 .name{
-    justify-self:center;
+    align-self: center;
 }
 .temp
 {
-    justify-self:center;
-    margin-bottom: 2px;
+    display: grid;
+    align-self:center;
+    justify-self: center;
 }
 .condition{
     justify-self: center;
-    align-content:center;
-    margin-top: 10px;
 }
 .condition-image
 {
     justify-self:center;
-    outline: 3px solid white;
     opacity: 0.9;
-    border-radius: 2px;
 }
-.errorimage
-{
-    justify-self:center;
-    height: 12vmax;
-    width: 18 vmax;
-    outline: 3px solid black;
-    opacity: 0.9;
-    border-radius: 2px;
-}
+
 .save-button
 {
     cursor: pointer;
+    align-self: end;
+}
+.remove-button
+{
+    color: crimson;
+    cursor: pointer;
+    justify-self: start;
+    border-radius: 2em;
+    border: cornsilk transparent solid 3px;
+    align-self: flex-start;
+    margin-left: 0.5em;
 }
