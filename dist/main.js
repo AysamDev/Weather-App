@@ -9,9 +9,17 @@ const loadPage = function()
 const handleSearch = async function()
 {
     let cityName = $('#city-input').val()
-    $('#city-input').val('')
-    api.getCityData(cityName)
-}
+    if(cityName != "")
+    {
+        $('#city-input').val('')
+        api.getCityData(cityName)
+    }
+    else
+    {
+        alert("Insert an city name")
+    }
+ }
+
 
 $('.city-container').on('click','.save-button',function()
 {
@@ -23,7 +31,6 @@ $('.city-container').on('click','.save-button',function()
 $('.city-container').on('click','.remove-button',function()
 {
     const name = $(this).siblings('.city-degree-name').children(".name").text()
-    console.log(name)
     api.removeCity(name)
 })
 

@@ -20,7 +20,6 @@ class APIManager {
                     condition: city.condition,
                     conditionPic: city.conditionPic
                 }))
-                console.log(this.cityData)
                 this.renderer.renderCities(this.cityData)
                 }
             });
@@ -49,7 +48,6 @@ class APIManager {
     async saveCity(cityName)
     {
         const city = await this.cityData.find(w => w.name === cityName)
-        console.log(city)
         $.ajax({
             type:"POST",
             contentType: "application/json",
@@ -58,7 +56,6 @@ class APIManager {
             data: JSON.stringify(city),
             success: (result) =>
              {  
-                console.log(result)
              }
              
             })
@@ -69,9 +66,7 @@ class APIManager {
             type:"DELETE",
             url: `/city/${cityName}`,
             success:  (result) => {
-                console.log(result)
                 const index = this.cityData.findIndex(w => w.name === cityName)
-                console.log(index)
                 this.cityData.splice(index,1)
                 this.renderer.renderCities(this.cityData)
                 },

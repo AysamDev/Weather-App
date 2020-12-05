@@ -1,6 +1,7 @@
 body{
     font-family: 'PT Sans', sans-serif;
     font-size: large;
+    background-color: #4D5D53;
 }
 .grid
 {
@@ -30,10 +31,16 @@ body{
    
     display: grid;
     font-size: 100%;
+    color: white;
     text-size-adjust: 10px;
 
 }
-
+#city_input, select, textarea{
+    color:white;
+}
+textarea:focus, input:focus {
+    color: white;
+}
 button{
     display: grid;
    align-self: center;
@@ -70,7 +77,14 @@ button{
     justify-items: center;
     margin-top: -3em;
 }
+.city-conditions
+{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
 .name{
+    display: grid;
     align-self: center;
 }
 .temp
@@ -78,13 +92,17 @@ button{
     display: grid;
     align-self:center;
     justify-self: center;
+    font-size: large;
 }
 .condition{
+    display: grid;
     justify-self: center;
 }
 .condition-image
 {
+    display: grid;
     justify-self:center;
+    align-self: center;
     opacity: 0.9;
 }
 
@@ -92,6 +110,9 @@ button{
 {
     cursor: pointer;
     align-self: end;
+    color: gold;
+    border-radius: 2px;
+    border: goldenrod transparent solid 3px;
 }
 .remove-button
 {

@@ -10,7 +10,6 @@ class Renderer
     {
         $('.city-container').empty()
         const html =  this.templateScript({cityData})
-        console.log(html)
         $('.city-container').append(html)
     }
 }
